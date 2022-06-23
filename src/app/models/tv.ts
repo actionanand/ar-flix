@@ -20,6 +20,7 @@ export interface TvShow {
   runtime: number;
   status: string;
   genres: Genre[];
+  title:string;
 }
 
 export interface TvShowDto {

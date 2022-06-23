@@ -1,20 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/components/item/item';
-import {
-  mapTvShowToItem,
-  TvShow,
-  TvShowCredits,
-  TvShowImages,
-  TvShowVideo
-} from 'src/app/models/tv';
+import { mapTvShowToItem, TvShow, TvShowCredits, TvShowImages, TvShowVideo } from 'src/app/models/tv';
 import { TvShowsService } from 'src/app/services/tvshows.service';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 
 @Component({
   selector: 'app-tvShow',
-  templateUrl: './tvShow.component.html',
-  styleUrls: ['./tvShow.component.scss']
+  templateUrl: './tvshow.component.html',
+  styleUrls: ['./tvshow.component.scss']
 })
 export class TvShowComponent implements OnInit, OnDestroy {
   tvShow: TvShow | null = null;
