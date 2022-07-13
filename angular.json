@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "ar-flix"
+  "defaultProject": "ar-flix",
+  "cli": {
+    "analytics": false
+  }
 }
