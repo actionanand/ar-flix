@@ -10,6 +10,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MoviesComponent } from './pages/movies/movies.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    MoviesComponent
+    MoviesComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
