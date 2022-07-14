@@ -27,6 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [Normalize css](https://necolas.github.io/normalize.css/)
 - [TMDB API docs](https://developers.themoviedb.org/3/getting-started/introduction)
 - [Prime Flex](https://www.primefaces.org/primeflex/)
+- [CSS Gradient](https://cssgradient.io/)
 
 ### Untracking `environment` files
 

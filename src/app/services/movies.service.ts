@@ -13,6 +13,6 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   getMovies() {
-    return this.http.get(this.url + 'movie/550');
+    return this.http.get(this.url + '/movie/popular');
   }
 }
