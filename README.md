@@ -22,6 +22,27 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
+## Resources
+
+- [Normalize css](https://necolas.github.io/normalize.css/)
+- [TMDB API docs](https://developers.themoviedb.org/3/getting-started/introduction)
+- [Prime Flex](https://www.primefaces.org/primeflex/)
+- [CSS Gradient](https://cssgradient.io/)
+
+### Untracking `environment` files
+
+- Add the following lines to `.gitignore` file
+
+```gitignore
+/src/environments/**
+```
+
+- Then run the following command in cli
+
+```bash
+git rm -r --cached -- ./src/environments/
+```
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
