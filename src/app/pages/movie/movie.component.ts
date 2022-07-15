@@ -15,7 +15,7 @@ export class MovieComponent implements OnInit {
   readonly imagesSizes = IMAGES_SIZES;
 
   movie: Movie | null = null;
-  movieVideo: MovieVideo[] = [];
+  movieVideos: MovieVideo[] = [];
 
   constructor(private route: ActivatedRoute, private moviesServ: MoviesService) { }
 
@@ -27,8 +27,7 @@ export class MovieComponent implements OnInit {
 
   onGetMovieVideos(id: string) {
     this.moviesServ.getMovieVideos(id).subscribe(resp => {
-      this.movieVideo = resp;
-      console.log(this.movieVideo);
+      this.movieVideos = resp;
     });
   }
 
