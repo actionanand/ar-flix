@@ -18,6 +18,8 @@ import { Movie } from '../../models/movie';
 export class SliderComponent implements OnInit {
 
   @Input() items!: Movie[];
+  @Input() isBanner: boolean = false;
+  @Input() slidingInterval: number = 5000;
 
   readonly imagesSizes = IMAGES_SIZES;
 
@@ -25,10 +27,14 @@ export class SliderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  onSetInterval(times: number) {
     setInterval(() => {
       this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
-    }, 5000);
+    }, times);
+  }
+
+  ngOnInit(): void {
+    !this.isBanner && this.onSetInterval(this.slidingInterval);
   }
 
 }

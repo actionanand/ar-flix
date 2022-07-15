@@ -4,6 +4,7 @@ import { RouterModule, Routes, TitleStrategy } from '@angular/router';
 import { PageTitleStrategyService } from './services/page-title-strategy.service';
 import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
+import { MovieComponent } from './pages/movie/movie.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,12 @@ const routes: Routes = [
   {
     path: 'movies',
     component: MoviesComponent,
-    title: 'Movies'
+    title: 'Movies List'
+  },
+  {
+    path: 'movie/:id',
+    component: MovieComponent,
+    title:'Movie Detail'
   },
   {
     path: '**',

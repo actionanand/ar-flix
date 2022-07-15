@@ -1,0 +1,15 @@
+<ng-container *ngIf="movie">
+  <app-slider [items]="[movie]" [isBanner]="true"></app-slider>
+
+  <p-tabView>
+    <p-tabPanel header="Overview">
+       Content 1
+    </p-tabPanel>
+    <p-tabPanel header="Videos">
+        Content 2
+    </p-tabPanel>
+    <p-tabPanel header="Photos">
+        Content 3
+    </p-tabPanel>
+  </p-tabView>
+</ng-container>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 
 import { environment as env } from 'src/environments/environment';
-import { MovieDto } from '../models/movie';
+import { Movie, MovieDto } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,10 @@ export class MoviesService {
           return of(resp.results.slice(0, count));
         })
       );
+  }
+
+  getMovie(id: string) {
+    return this.http.get<Movie>(this.url + '/movie/' + id);
   }
 
   searchMovies(page: number = 2) {
