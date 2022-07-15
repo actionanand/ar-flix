@@ -49,3 +49,16 @@ export interface MovieVideo {
   'iso_639_1': string;
   'iso_3166_1': string;
 };
+
+export interface MovieImages {
+  backdrops: {
+    file_path: string;
+  }[];
+};
+
+export interface MovieCredits {
+  cast: {
+    name: string;
+    profile_path: string;
+  }[];
+};

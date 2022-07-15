@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PaginatorModule } from 'primeng/paginator';
 import { TabViewModule } from 'primeng/tabview';
+import { ImageModule } from 'primeng/image';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +40,8 @@ import { VideoEmbedComponent } from './components/video-embed/video-embed.compon
     AppRoutingModule,
     HttpClientModule,
     PaginatorModule,
-    TabViewModule
+    TabViewModule,
+    ImageModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
