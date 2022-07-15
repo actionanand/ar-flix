@@ -12,7 +12,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies() {
-    return this.http.get(this.url + '/movie/popular');
+  getMovies(type: string = 'popular') {
+    return this.http.get(this.url + '/movie/' + type);
   }
 }

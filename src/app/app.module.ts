@@ -11,6 +11,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
+import { ItemComponent } from './components/item/item.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { SliderComponent } from './components/slider/slider.component';
     FooterComponent,
     HomeComponent,
     MoviesComponent,
-    SliderComponent
+    SliderComponent,
+    ItemsBannerComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
