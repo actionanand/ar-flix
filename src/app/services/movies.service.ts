@@ -18,6 +18,15 @@ export class MoviesService {
     return this.http.get<MovieDto>(this.url + '/movie/' + type)
       .pipe(
         switchMap(resp => {
+          return of(resp.results.slice(0, count));
+        })
+      );
+  }
+
+  searchMovies(page: number = 2) {
+    return this.http.get<MovieDto>(`${this.url}/movie/popular?page=${page}`)
+      .pipe(
+        switchMap(resp => {
           return of(resp.results);
         })
       );
