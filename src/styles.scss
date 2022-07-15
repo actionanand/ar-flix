@@ -44,6 +44,7 @@ a {
   font-feature-settings: 'liga';
 }
 
+// to nullify prime flex's default negative margin which leads to default scrollbar
 .container {
   margin: 0.5rem;
   padding: 0.5rem;
