@@ -22,15 +22,15 @@ export class HomeComponent implements OnInit {
     this.moviesServ.getMovies().subscribe(resp => {
       this.popularMovies = resp;
       console.log(this.popularMovies);
-    })
+    });
 
     this.moviesServ.getMovies('upcoming').subscribe(resp => {
       this.upcomingMovies = resp;
-    })
+    });
 
     this.moviesServ.getMovies('top_rated').subscribe(resp => {
       this.topRatedMovies = resp;
-    })
+    });
   }
 
 }
