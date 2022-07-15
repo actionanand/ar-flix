@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IMAGES_SIZES } from '../../constants/images-sizes';
-import { Movie, MovieImages, MovieVideo } from '../../models/movie';
+import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
+import { CAROUSEL_RESPONSIVE_CONST } from './carousel-reponsive-constant';
 
 @Component({
   selector: 'app-movie',
@@ -14,9 +15,12 @@ export class MovieComponent implements OnInit {
 
   readonly imagesSizes = IMAGES_SIZES;
 
+  responsiveOptions = CAROUSEL_RESPONSIVE_CONST;
+
   movie: Movie | null = null;
   movieVideos: MovieVideo[] = [];
   movieImages: MovieImages | null = null;
+  movieCredits: MovieCredits | null = null;
 
   constructor(private route: ActivatedRoute, private moviesServ: MoviesService) { }
 
@@ -38,11 +42,18 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  onGetMovieCredits(id: string) {
+    this.moviesServ.getMovieCredits(id).subscribe(resp => {
+      this.movieCredits = resp;
+    });
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(({ id }) => {
       this.onGetMovieDetail(id);
       this.onGetMovieVideos(id);
       this.onGetMovieImages(id);
+      this.onGetMovieCredits(id);
     });
   }
 

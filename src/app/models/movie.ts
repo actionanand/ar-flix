@@ -56,9 +56,22 @@ export interface MovieImages {
   }[];
 };
 
+
 export interface MovieCredits {
-  cast: {
-    name: string;
-    profile_path: string;
-  }[];
-};
+  cast: Character[];
+  crew: Character[];
+}
+
+export interface Character {
+  id: number;
+  adult: boolean;
+  gender: number;
+  name: string;
+  profile_path: string;
+  original_name: string;
+  popularity: number;
+  known_for_department: string;
+  character?: string;
+  department?: string;
+  job?: string;
+}

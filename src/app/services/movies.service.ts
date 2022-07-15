@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 
 import { environment as env } from 'src/environments/environment';
-import { Movie, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
+import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,9 @@ export class MoviesService {
 
   getMovieImages(id: string) {
     return this.http.get<MovieImages>(`${this.url}/movie/${id}/images`);
+  }
+
+  getMovieCredits(id: string) {
+    return this.http.get<MovieCredits>(`${this.url}/movie/${id}/credits`);
   }
 }
