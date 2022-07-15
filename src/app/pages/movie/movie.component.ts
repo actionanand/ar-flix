@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from 'src/app/models/movie';
 
+import { IMAGES_SIZES } from '../../constants/images-sizes';
+import { Movie, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 
 @Component({
@@ -11,15 +12,30 @@ import { MoviesService } from '../../services/movies.service';
 })
 export class MovieComponent implements OnInit {
 
+  readonly imagesSizes = IMAGES_SIZES;
+
   movie: Movie | null = null;
+  movieVideo: MovieVideo[] = [];
 
   constructor(private route: ActivatedRoute, private moviesServ: MoviesService) { }
 
+  onGetMovieDetail(id: string) {
+    this.moviesServ.getMovie(id).subscribe(resp => {
+      this.movie = resp;
+    });
+  }
+
+  onGetMovieVideos(id: string) {
+    this.moviesServ.getMovieVideos(id).subscribe(resp => {
+      this.movieVideo = resp;
+      console.log(this.movieVideo);
+    });
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(({ id }) => {
-      this.moviesServ.getMovie(id).subscribe(resp => {
-        this.movie = resp;
-      })
+      this.onGetMovieDetail(id);
+      this.onGetMovieVideos(id);
     });
   }
 
