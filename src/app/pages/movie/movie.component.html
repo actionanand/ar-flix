@@ -81,8 +81,14 @@
     [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
     <ng-template let-actor pTemplate="item">
       <div class="actor">
-        <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
-        <span>{{ actor.name }}</span>
+        <ng-container *ngIf="actor.profile_path else placeHolderImg">
+          <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
+          <span>{{ actor.name }}</span>
+        </ng-container>
+        <ng-template #placeHolderImg>
+          <img [src]="manPlaceholderImg" [alt]="actor.name" />
+          <span>{{ actor.name }}</span>
+        </ng-template>
       </div>
     </ng-template>
   </p-carousel>

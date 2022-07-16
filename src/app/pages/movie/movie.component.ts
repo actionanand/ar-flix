@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { first } from 'rxjs';
+
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 import { CAROUSEL_RESPONSIVE_CONST } from './carousel-reponsive-constant';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-movie',
@@ -14,6 +17,7 @@ import { CAROUSEL_RESPONSIVE_CONST } from './carousel-reponsive-constant';
 export class MovieComponent implements OnInit {
 
   readonly imagesSizes = IMAGES_SIZES;
+  readonly manPlaceholderImg = env.manPlaceholderImg;
 
   responsiveOptions = CAROUSEL_RESPONSIVE_CONST;
 
@@ -49,7 +53,7 @@ export class MovieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(({ id }) => {
+    this.route.params.pipe(first()).subscribe(({ id }) => {
       this.onGetMovieDetail(id);
       this.onGetMovieVideos(id);
       this.onGetMovieImages(id);
