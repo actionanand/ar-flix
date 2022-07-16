@@ -18,8 +18,8 @@ export class MoviesComponent implements OnInit {
 
   constructor(private moviesServ: MoviesService, private route: ActivatedRoute) { }
 
-  getPagedMovies(page: number = 1) {
-    this.moviesServ.searchMovies(page).subscribe(resp => {
+  getPagedMovies(page: number = 1, searchTerm: string = '') {
+    this.moviesServ.searchMovies(page, searchTerm).subscribe(resp => {
       this.movies = resp;
     });
   }
@@ -42,9 +42,7 @@ export class MoviesComponent implements OnInit {
   }
 
   onSearchChange() {
-    this.moviesServ.searchMovies(1, this.searchTerm.trim()).subscribe(resp => {
-      this.movies = resp;
-    });
+    this.getPagedMovies(1, this.searchTerm.trim());
   }
 
   paginate(event: any) {
@@ -53,7 +51,7 @@ export class MoviesComponent implements OnInit {
     if (this.genreId) {
       this.getMoviesByGenre(this.genreId, pageNumber);
     } else {
-      this.getPagedMovies(pageNumber);
+      this.getPagedMovies(pageNumber, this.searchTerm.trim());
     }
   }
 
