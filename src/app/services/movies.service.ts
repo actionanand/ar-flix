@@ -36,6 +36,15 @@ export class MoviesService {
       );
   }
 
+  getSimilarMovies(id: string) {
+    return this.http.get<MovieDto>(`${this.url}/movie/${id}/similar`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results.slice(0, 12));
+        })
+      );
+  }
+
   getMovieVideos(id: string) {
     return this.http.get<MovieVideoDto>(`${this.url}/movie/${id}/videos`)
       .pipe(

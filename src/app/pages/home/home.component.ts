@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.moviesServ.getMovies().subscribe(resp => {
       this.popularMovies = resp;
-      console.log(this.popularMovies);
+      // console.log(this.popularMovies);
     });
 
     this.moviesServ.getMovies('upcoming').subscribe(resp => {

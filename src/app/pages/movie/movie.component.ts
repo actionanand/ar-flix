@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { first } from 'rxjs';
+import { first, Subscription } from 'rxjs';
 
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
@@ -14,15 +14,18 @@ import { environment as env } from 'src/environments/environment';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss']
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
 
   readonly imagesSizes = IMAGES_SIZES;
   readonly manPlaceholderImg = env.manPlaceholderImg;
 
   responsiveOptions = CAROUSEL_RESPONSIVE_CONST;
 
+  paramSub!: Subscription;
+
   movie: Movie | null = null;
   movieVideos: MovieVideo[] = [];
+  similarMovies: Movie[] = [];
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
 
@@ -52,13 +55,24 @@ export class MovieComponent implements OnInit {
     });
   }
 
+  onGetSililarMovies(id: string) {
+    this.moviesServ.getSimilarMovies(id).subscribe(resp => {
+      this.similarMovies = resp;
+    });
+  }
+
   ngOnInit(): void {
-    this.route.params.pipe(first()).subscribe(({ id }) => {
+    this.paramSub = this.route.params.subscribe(({ id }) => {
       this.onGetMovieDetail(id);
       this.onGetMovieVideos(id);
       this.onGetMovieImages(id);
       this.onGetMovieCredits(id);
+      this.onGetSililarMovies(id);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.paramSub && this.paramSub.unsubscribe();
   }
 
 }

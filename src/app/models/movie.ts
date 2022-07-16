@@ -12,6 +12,7 @@ export interface Movie {
   release_date: string;
   runtime: number;
   revenue: number;
+  spoken_languages: AudioLanguage[];
   status: string;
   title: string;
   video: boolean;
@@ -31,6 +32,11 @@ export interface Genre {
   id: number;
   name: string;
 };
+
+export interface AudioLanguage {
+  'iso_639_1': string;
+  name: string;
+}
 
 export interface MovieVideoDto {
   id: number;
