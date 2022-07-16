@@ -19,7 +19,28 @@
   .p-image-preview-icon {
     color: $primaryColor;
   }
+
+  .p-overlaypanel {
+    width: 60vw;
+  }  
 }
+
+// classes will be available globally
+::ng-deep{
+  .show-company-dialog {
+    width: 60vw;
+  }
+
+  .company-dialog-chip {
+    margin-bottom: .5rem;
+    margin-right: .5rem;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #fff;
+  }
+} 
+
+
 
 .poster {
   max-width: 100%;
@@ -39,6 +60,10 @@
 
   .value {
     color: $primaryColor;
+  }
+
+  .elipsis {
+    cursor: pointer;
   }
 }
 

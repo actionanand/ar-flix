@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-import { first, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
@@ -17,7 +18,8 @@ import { environment as env } from 'src/environments/environment';
 export class MovieComponent implements OnInit, OnDestroy {
 
   readonly imagesSizes = IMAGES_SIZES;
-  readonly manPlaceholderImg = env.manPlaceholderImg;
+  readonly manPlaceholderImg: SafeUrl = this.onSanitizeUrl(env.manPlaceholderImg);
+  idmbUrl: SafeUrl = this.onSanitizeUrl(env.idmbUrl);
 
   responsiveOptions = CAROUSEL_RESPONSIVE_CONST;
 
@@ -29,11 +31,17 @@ export class MovieComponent implements OnInit, OnDestroy {
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
 
-  constructor(private route: ActivatedRoute, private moviesServ: MoviesService) { }
+  showCompany: boolean = false;
+
+  constructor(private route: ActivatedRoute, private moviesServ: MoviesService, private sanitizer: DomSanitizer) { }
 
   onGetMovieDetail(id: string) {
     this.moviesServ.getMovie(id).subscribe(resp => {
       this.movie = resp;
+      this.idmbUrl = this.onSanitizeUrl(`${env.idmbUrl}/${this.movie.imdb_id}`);
+      if (this.movie?.production_companies?.length > 3) {
+        this.showCompany = true;
+      }
     });
   }
 
@@ -73,6 +81,10 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramSub && this.paramSub.unsubscribe();
+  }
+
+  private onSanitizeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url)
   }
 
 }
