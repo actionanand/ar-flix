@@ -9,6 +9,7 @@ import { ImageModule } from 'primeng/image';
 import { CarouselModule } from 'primeng/carousel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChipModule } from 'primeng/chip';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +50,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     ImageModule,
     CarouselModule,
     OverlayPanelModule,
-    ChipModule
+    ChipModule,
+    InputTextModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

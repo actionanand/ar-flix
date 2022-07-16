@@ -14,6 +14,7 @@ export class MoviesComponent implements OnInit {
 
   movies: Movie[] = [];
   genreId: string | null = null;
+  searchTerm: string = '';
 
   constructor(private moviesServ: MoviesService, private route: ActivatedRoute) { }
 
@@ -37,6 +38,12 @@ export class MoviesComponent implements OnInit {
       } else {
         this.getPagedMovies();
       }
+    });
+  }
+
+  onSearchChange() {
+    this.moviesServ.searchMovies(1, this.searchTerm.trim()).subscribe(resp => {
+      this.movies = resp;
     });
   }
 

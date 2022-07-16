@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 
@@ -27,8 +27,16 @@ export class MoviesService {
     return this.http.get<Movie>(this.url + '/movie/' + id);
   }
 
-  searchMovies(page: number = 1) {
-    return this.http.get<MovieDto>(`${this.url}/movie/popular?page=${page}`)
+  searchMovies(page: number = 1, searchTerm?: string) {
+    let searchUri = '/movie/popular';
+    let params = new HttpParams().set('page', page);
+
+    if (searchTerm) {
+      params = params.set('query', searchTerm);
+      searchUri = '/search/movie';
+    }
+
+    return this.http.get<MovieDto>(`${this.url}${searchUri}`, {params})
       .pipe(
         switchMap(resp => {
           return of(resp.results);
