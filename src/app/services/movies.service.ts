@@ -27,7 +27,7 @@ export class MoviesService {
     return this.http.get<Movie>(this.url + '/movie/' + id);
   }
 
-  searchMovies(page: number = 2) {
+  searchMovies(page: number = 1) {
     return this.http.get<MovieDto>(`${this.url}/movie/popular?page=${page}`)
       .pipe(
         switchMap(resp => {
@@ -41,6 +41,15 @@ export class MoviesService {
       .pipe(
         switchMap((res) => {
           return of(res.results.slice(0, 12));
+        })
+      );
+  }
+
+  getMoviesByGenre(id: string, page: number = 1) {
+    return this.http.get<MovieDto>(`${this.url}/discover/movie?with_genres=${id}&page=${page}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
         })
       );
   }

@@ -19,6 +19,11 @@ const routes: Routes = [
     title: 'Movies List'
   },
   {
+    path: 'movies/categories/:genreId',
+    component: MoviesComponent,
+    title:'Movies List By Categories'
+  },
+  {
     path: 'movie/:id',
     component: MovieComponent,
     title:'Movie Detail'
@@ -26,7 +31,7 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
-    title: 'Movie Categories'
+    title: 'Movies & Tv shows Categories'
   },
   {
     path: '**',
