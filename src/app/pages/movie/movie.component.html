@@ -11,10 +11,7 @@
   
           <div class="col-12 md:col-9 lg:col-9">
             <h2>Overview</h2>
-            <p class="overview">
-              {{ movie.overview }}
-              <a [href]="idmbUrl" target="_blank">IDMB Reference</a>
-            </p>
+            <p class="overview"> {{ movie.overview }} </p>
             <div class="stat">
               <div class="label">Release Date:</div>
               <div class="value">
@@ -81,12 +78,21 @@
                 <span *ngFor="let company of movie?.production_companies | slice:0:3">
                   {{ company.name }}
                 </span>
-                <span pButton label="Basic" (click)="showProdCompany.toggle($event)" *ngIf="showCompany" class="elipsis"> ... </span>
+                <span pButton label="Basic" (click)="showProdCompany.toggle($event)" *ngIf="showCompany" class="elipsis">
+                  <i class="pi pi-ellipsis-h"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="stat" *ngIf="movie?.spoken_languages?.length">
+              <div class="value">
+                <a [href]="idmbUrl" target="_blank" class="movie-link"> - IDMB Reference</a>
               </div>
             </div>
           </div>
         </div>
       </p-tabPanel>
+
   
       <p-tabPanel header="Videos">
         <div class="grid">

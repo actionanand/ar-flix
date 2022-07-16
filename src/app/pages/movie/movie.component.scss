@@ -34,6 +34,8 @@
   .company-dialog-chip {
     margin-bottom: .5rem;
     margin-right: .5rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     color: #fff;
@@ -64,6 +66,22 @@
 
   .elipsis {
     cursor: pointer;
+    vertical-align: middle;
+
+    &:hover {
+      color: white;
+      .pi {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .movie-link {
+    color: $primaryColor;
+
+    &:hover {
+      color: white;
+    }
   }
 }
 
