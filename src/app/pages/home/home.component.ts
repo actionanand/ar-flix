@@ -19,18 +19,18 @@ export class HomeComponent implements OnInit {
   constructor(private moviesServ: MoviesService) { }
 
   ngOnInit(): void {
-    this.moviesServ.getMovies().subscribe((resp: any) => {
-      this.popularMovies = resp.results;
-      console.log(this.popularMovies);
-    })
+    this.moviesServ.getMovies().subscribe(resp => {
+      this.popularMovies = resp;
+      // console.log(this.popularMovies);
+    });
 
-    this.moviesServ.getMovies('upcoming').subscribe((resp: any) => {
-      this.upcomingMovies = resp.results;
-    })
+    this.moviesServ.getMovies('upcoming').subscribe(resp => {
+      this.upcomingMovies = resp;
+    });
 
-    this.moviesServ.getMovies('top_rated').subscribe((resp: any) => {
-      this.topRatedMovies = resp.results;
-    })
+    this.moviesServ.getMovies('top_rated').subscribe(resp => {
+      this.topRatedMovies = resp;
+    });
   }
 
 }

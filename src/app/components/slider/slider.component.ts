@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
+import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { Movie } from '../../models/movie';
 
 @Component({
@@ -14,18 +15,30 @@ import { Movie } from '../../models/movie';
     ])
   ]
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy {
 
   @Input() items!: Movie[];
+  @Input() isBanner: boolean = false;
+  @Input() slidingInterval: number = 5000;
+
+  readonly imagesSizes = IMAGES_SIZES;
 
   currentSlideIndex: number = 0;
+  sliderIntervalRef: any = null;
 
   constructor() { }
-
-  ngOnInit(): void {
-    setInterval(() => {
+  
+  onSetInterval(times: number) {
+    this.sliderIntervalRef = setInterval(() => {
       this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
-    }, 5000);
+    }, times);
   }
-
+  
+  ngOnInit(): void {
+    !this.isBanner && this.onSetInterval(this.slidingInterval);
+  }
+  
+  ngOnDestroy(): void {
+    this.sliderIntervalRef && clearInterval(this.sliderIntervalRef);
+  }
 }
