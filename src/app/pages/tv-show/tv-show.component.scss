@@ -1,6 +1,5 @@
 @import '../../../styles/colors';
 
-// changes only for this component
 :host ::ng-deep {
   .p-tabview-nav {
     justify-content: center;
@@ -42,7 +41,6 @@
   }
 } 
 
-
 .poster {
   max-width: 100%;
 }
@@ -62,24 +60,16 @@
   .value {
     color: $primaryColor;
   }
+}
 
-  .elipsis {
-    cursor: pointer;
-    vertical-align: middle;
+.elipsis {
+  cursor: pointer;
+  vertical-align: middle;
 
-    &:hover {
-      color: white;
-      .pi {
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .movie-link {
-    color: $primaryColor;
-
-    &:hover {
-      color: white;
+  &:hover {
+    color: white;
+    .pi {
+      font-size: 1.5rem;
     }
   }
 }

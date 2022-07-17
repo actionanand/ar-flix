@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
-import { Movie } from '../../models/movie';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-item',
@@ -10,7 +10,7 @@ import { Movie } from '../../models/movie';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() itemData: Movie | null = null;
+  @Input() itemData: Item | null = null;
 
   readonly imagesSizes = IMAGES_SIZES;
 

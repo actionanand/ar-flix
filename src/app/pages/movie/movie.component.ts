@@ -5,9 +5,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
 import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
-import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
+import { mapMovieToItem, Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 import { CAROUSEL_RESPONSIVE_CONST } from '../../shared/constants/carousel-reponsive-constant';
+import { Item } from '../../models/item';
 import { environment as env } from 'src/environments/environment';
 
 @Component({
@@ -27,7 +28,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   movie: Movie | null = null;
   movieVideos: MovieVideo[] = [];
-  similarMovies: Movie[] = [];
+  similarMovies: Item[] = [];
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
 
@@ -63,9 +64,9 @@ export class MovieComponent implements OnInit, OnDestroy {
     });
   }
 
-  onGetSililarMovies(id: string) {
+  onGetSimilarMovies(id: string) {
     this.moviesServ.getSimilarMovies(id).subscribe(resp => {
-      this.similarMovies = resp;
+      this.similarMovies = resp.map(movie => mapMovieToItem(movie));
     });
   }
 
@@ -75,7 +76,7 @@ export class MovieComponent implements OnInit, OnDestroy {
       this.onGetMovieVideos(id);
       this.onGetMovieImages(id);
       this.onGetMovieCredits(id);
-      this.onGetSililarMovies(id);
+      this.onGetSimilarMovies(id);
     });
   }
 

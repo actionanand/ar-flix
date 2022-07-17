@@ -17,13 +17,14 @@ import { InterceptorService } from './services/interceptor.service';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MoviesComponent } from './pages/movies/movies.component';
+import { ResultsComponent } from './pages/results/results.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
 import { ItemComponent } from './components/item/item.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { TvShowComponent } from './pages/tv-show/tv-show.component';
 
 
 @NgModule({
@@ -32,13 +33,14 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    MoviesComponent,
+    ResultsComponent,
     SliderComponent,
     ItemsBannerComponent,
     ItemComponent,
     MovieComponent,
     VideoEmbedComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    TvShowComponent
   ],
   imports: [
     BrowserModule,
