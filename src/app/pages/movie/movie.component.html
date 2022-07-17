@@ -11,7 +11,7 @@
   
           <div class="col-12 md:col-9 lg:col-9">
             <h2>Overview</h2>
-            <p class="overview">{{ movie.overview }}</p>
+            <p class="overview"> {{ movie.overview }} </p>
             <div class="stat">
               <div class="label">Release Date:</div>
               <div class="value">
@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="stat">
-              <div class="label">Original Language:</div>
+              <div class="label">Language:</div>
               <div class="value">
                 {{ movie.original_language | uppercase }}
               </div>
@@ -28,6 +28,12 @@
               <div class="label">Revenue:</div>
               <div class="value">
                 {{ movie.revenue | currency }}
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Budget:</div>
+              <div class="value">
+                {{ movie.budget | currency }}
               </div>
             </div>
             <div class="stat">
@@ -41,7 +47,7 @@
               </div>
             </div>
             <div class="stat">
-              <div class="label">Genre:</div>
+              <div class="label">Genré:</div>
               <div class="value">
                 <span *ngFor="let genre of movie?.genres; index as i">
                   <ng-container *ngIf="i !== 0">, </ng-container>
@@ -57,9 +63,36 @@
                 </span>
               </div>
             </div>
+
+            <p-overlayPanel #showProdCompany styleClass="show-company-dialog">
+              <ng-template pTemplate [ngIf]="movie?.production_companies?.length">
+                <p-chip *ngFor="let company of movie?.production_companies" styleClass="company-dialog-chip"> 
+                  {{ company.name }} 
+                </p-chip>
+              </ng-template>
+            </p-overlayPanel>
+
+            <div class="stat" *ngIf="movie?.production_companies?.length">
+              <div class="label">Production:</div>
+              <div class="value">
+                <span *ngFor="let company of movie?.production_companies | slice:0:3">
+                  {{ company.name }}
+                </span>
+                <span pButton label="Basic" (click)="showProdCompany.toggle($event)" *ngIf="showCompany" class="elipsis">
+                  <i class="pi pi-ellipsis-h"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="stat" *ngIf="movie?.spoken_languages?.length">
+              <div class="value">
+                <a [href]="idmbUrl" target="_blank" class="movie-link"> - IDMB Reference</a>
+              </div>
+            </div>
           </div>
         </div>
       </p-tabPanel>
+
   
       <p-tabPanel header="Videos">
         <div class="grid">
