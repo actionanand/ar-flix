@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 
 import { environment as env } from 'src/environments/environment';
-import { GenresDto, Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
+import { GenresDto } from '../models/genre';
+import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'

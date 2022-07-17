@@ -4,10 +4,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs';
 
-import { IMAGES_SIZES } from '../../constants/images-sizes';
+import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
-import { CAROUSEL_RESPONSIVE_CONST } from './carousel-reponsive-constant';
+import { CAROUSEL_RESPONSIVE_CONST } from '../../shared/constants/carousel-reponsive-constant';
 import { environment as env } from 'src/environments/environment';
 
 @Component({
