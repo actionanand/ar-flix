@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 
 import { environment as env } from 'src/environments/environment';
-import { GenresDto } from '../models/genre';
+import { GenresDto } from '../models/common';
 import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 
 @Injectable({

@@ -28,6 +28,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [TMDB API docs](https://developers.themoviedb.org/3/getting-started/introduction)
 - [Prime Flex](https://www.primefaces.org/primeflex/)
 - [CSS Gradient](https://cssgradient.io/)
+- [Angular Pass Data to Route: Dynamic/Static](https://www.tektutorialshub.com/angular/angular-pass-data-to-route/)
 
 ### Untracking `environment` files
 

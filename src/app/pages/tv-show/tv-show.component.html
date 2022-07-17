@@ -1,0 +1,147 @@
+<ng-container *ngIf="tvShow">
+  <app-slider *ngIf="tvShowBanner" [items]="[tvShowBanner]" [isBanner]="true"></app-slider>
+
+  <div class="container">
+    <p-tabView>
+      <p-tabPanel header="Overview">
+        <div class="grid">
+          <div class="col-12 md:col-3 lg:col-3">
+            <img class="poster" [src]="imagesSizes.medium + tvShow.poster_path" [alt]="tvShow.name" />
+          </div>
+  
+          <div class="col-12 md:col-9 lg:col-9">
+            <h2>Overview</h2>
+            <p class="overview">{{ tvShow.overview }}</p>
+            <div class="stat" *ngIf="tvShow?.first_air_date">
+              <div class="label">First Aired:</div>
+              <div class="value">
+                {{ tvShow?.first_air_date | date: 'dd-MMM-yyyy' }}
+              </div>
+            </div>
+            <div class="stat" *ngIf="tvShow?.first_air_date">
+              <div class="label">Last Aired:</div>
+              <div class="value">
+                {{ tvShow?.last_air_date | date: 'dd-MMM-yyyy' }}
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Language:</div>
+              <div class="value">
+                {{ tvShow.original_language | uppercase }}
+              </div>
+            </div>
+            <div class="stat" *ngIf="tvShow?.spoken_languages?.length">
+              <div class="label">Audio Feed(s):</div>
+              <div class="value">
+                <span *ngFor="let lang of tvShow?.spoken_languages">
+                  {{ lang.name }} ({{ lang?.iso_639_1 | uppercase }})
+                </span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Duration:</div>
+              <div class="value">{{ tvShow.episode_run_time }} min</div>
+            </div>
+            <div class="stat">
+              <div class="label">Status:</div>
+              <div class="value">
+                {{ tvShow.status }}
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Total Seasons:</div>
+              <div class="value">
+                {{ tvShow?.number_of_seasons }}
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Genré:</div>
+              <div class="value">
+                <span *ngFor="let genre of tvShow?.genres">
+                  {{ genre.name }}
+                </span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Creator:</div>
+              <div class="value">
+                <span *ngFor="let creator of tvShow?.created_by">
+                  {{ creator.name }}
+                </span>
+              </div>
+            </div>
+  
+            <p-overlayPanel #showNetwrkCompany styleClass="show-company-dialog">
+              <ng-template pTemplate [ngIf]="tvShow?.networks?.length">
+                <p-chip *ngFor="let network of tvShow?.networks" styleClass="company-dialog-chip"> 
+                  {{ network.name }} 
+                </p-chip>
+              </ng-template>
+            </p-overlayPanel>
+  
+            <div class="stat" *ngIf="tvShow?.networks?.length">
+              <div class="label">Network:</div>
+              <div class="value">
+                <span *ngFor="let network of tvShow?.networks | slice:0:3">
+                  {{ network.name }}
+                </span>
+                <span pButton label="Basic" (click)="showNetwrkCompany.toggle($event)" *ngIf="showNetwork" class="elipsis">
+                  <i class="pi pi-ellipsis-h"></i>
+                </span>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </p-tabPanel>
+  
+      <p-tabPanel header="Videos">
+        <div class="grid">
+          <ng-container *ngFor="let tvShowVideo of tvShowVideos">
+            <div class="col-12 md:col-4 lg:col-4">
+              <app-video-embed [key]="tvShowVideo.key" [site]="tvShowVideo.site"></app-video-embed>
+            </div>
+          </ng-container>
+        </div>
+      </p-tabPanel>
+  
+      <p-tabPanel header="Photos">
+        <div class="grid">
+          <ng-container *ngFor="let tvShowImage of tvShowImages?.backdrops">
+            <div class="col-12 md:col-4 lg:col-4">
+              <p-image
+                [src]="imagesSizes.large + tvShowImage.file_path"
+                alt="Image"
+                width="100%"
+                [preview]="true"
+              ></p-image>
+            </div>
+          </ng-container>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+
+  <div class="container">
+    <p-carousel [numVisible]="5" *ngIf="tvShowCredits" [value]="tvShowCredits.cast" [numScroll]="3" 
+      [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
+      <ng-template pTemplate="header">
+        <h2>Cast</h2>
+      </ng-template>
+      <ng-template let-actor pTemplate="item">
+        <div class="actor">
+          <ng-container *ngIf="actor.profile_path else placeHolderImg">
+            <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
+            <span>{{ actor.name }}</span>
+          </ng-container>
+          <ng-template #placeHolderImg>
+            <img [src]="manPlaceholderImg" [alt]="actor.name" />
+            <span>{{ actor.name }}</span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <app-items-banner [items]="similarTvShows" title="Similar Tv Shows"></app-items-banner>
+</ng-container>

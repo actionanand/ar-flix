@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
-import { Movie } from '../../models/movie';
+import { Item } from '../../models/item';
 import { SLIDE_FADE } from '../../shared/animations/fade.animation';
 
 @Component({
@@ -12,7 +12,7 @@ import { SLIDE_FADE } from '../../shared/animations/fade.animation';
 })
 export class SliderComponent implements OnInit, OnDestroy {
 
-  @Input() items!: Movie[];
+  @Input() items!: Item[];
   @Input() isBanner: boolean = false;
   @Input() slidingInterval: number = 5000;
 

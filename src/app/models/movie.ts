@@ -1,4 +1,5 @@
-import { Genre } from "./genre";
+import { AudioLanguage, CharacterProfile, Genre, ProductionCompany, ProductionCountry } from "./common";
+import { Item } from "./item";
 
 export interface Movie {
   adult: boolean;
@@ -35,23 +36,6 @@ export interface MovieDto {
   total_pages: number;
 };
 
-export interface AudioLanguage {
-  'iso_639_1': string;
-  name: string;
-};
-
-export interface ProductionCompany {
-  id: string;
-  logo_path: string;
-  name: string;
-  origin_country: string;
-};
-
-export interface ProductionCountry {
-  'iso_3166_1': string;
-  name: string;
-};
-
 export interface MovieVideoDto {
   id: number;
   results: MovieVideo[];
@@ -78,20 +62,22 @@ export interface MovieImages {
 
 
 export interface MovieCredits {
-  cast: Character[];
-  crew: Character[];
-}
+  cast: CharacterProfile[];
+  crew: CharacterProfile[];
+};
 
-export interface Character {
-  id: number;
-  adult: boolean;
-  gender: number;
-  name: string;
-  profile_path: string;
-  original_name: string;
-  popularity: number;
-  known_for_department: string;
-  character?: string;
-  department?: string;
-  job?: string;
-}
+
+// mapping to make 'item' component generic
+export const mapMovieToItem = (movie: Movie): Item => {
+  return {
+    id: movie.id,
+    title: movie.title,
+    poster_path: movie.poster_path,
+    vote_average: movie.vote_average,
+    backdrop_path: movie.backdrop_path,
+    vote_count: movie.vote_count,
+    release_date: movie.release_date,
+    overview: movie.overview,
+    routePath: '/movie/' + movie.id
+  };
+};
