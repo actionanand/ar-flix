@@ -1,3 +1,5 @@
+import { Genre } from "./genre";
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
@@ -31,15 +33,6 @@ export interface MovieDto {
   results: Movie[];
   total_results: number;
   total_pages: number;
-};
-
-export interface Genre {
-  id: number;
-  name: string;
-};
-
-export interface GenresDto {
-  genres: Genre[];
 };
 
 export interface AudioLanguage {

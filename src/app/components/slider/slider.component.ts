@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { IMAGES_SIZES } from '../../constants/images-sizes';
+import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
 import { Movie } from '../../models/movie';
 
 @Component({
