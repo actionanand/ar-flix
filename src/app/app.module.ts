@@ -10,6 +10,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChipModule } from 'primeng/chip';
 import { InputTextModule } from 'primeng/inputtext';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +54,8 @@ import { TvShowComponent } from './pages/tv-show/tv-show.component';
     CarouselModule,
     OverlayPanelModule,
     ChipModule,
-    InputTextModule
+    InputTextModule,
+    SkeletonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

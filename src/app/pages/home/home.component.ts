@@ -41,4 +41,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  get loadContent(): boolean {
+    if (this.popularMovies && this.upcomingMovies && this.topRatedMovies && this.onTheAirTv) {
+      return true;
+    }
+    return false;
+  }
+
 }

@@ -37,6 +37,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private moviesServ: MoviesService, private sanitizer: DomSanitizer) { }
 
   onGetMovieDetail(id: string) {
+    this.movie = null;
     this.moviesServ.getMovie(id).subscribe(resp => {
       this.movie = resp;
       this.idmbUrl = this.onSanitizeUrl(`${env.idmbUrl}/${this.movie.imdb_id}`);
@@ -59,12 +60,14 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   onGetMovieCredits(id: string) {
+    this.movieCredits =null;
     this.moviesServ.getMovieCredits(id).subscribe(resp => {
       this.movieCredits = resp;
     });
   }
 
   onGetSimilarMovies(id: string) {
+    this.similarMovies = [];
     this.moviesServ.getSimilarMovies(id).subscribe(resp => {
       this.similarMovies = resp.map(movie => mapMovieToItem(movie));
     });
@@ -81,11 +84,21 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramSub && this.paramSub.unsubscribe();
+    // this.paramSub && this.paramSub.unsubscribe();
+    if(this.paramSub) {
+      this.paramSub.unsubscribe();
+    }
+  }
+
+  get loadContent(): boolean {
+    if(this.similarMovies && this.movieCredits) {
+      return true;
+    }
+    return false;
   }
 
   private onSanitizeUrl(url: string) {
-    return this.sanitizer.bypassSecurityTrustUrl(url)
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
 }

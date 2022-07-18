@@ -37,6 +37,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private tvServ: TvShowsService, private sanitizer: DomSanitizer) { }
 
   getTvShow(id: string) {
+    this.tvShow = null;
     this.tvServ.getTvShow(id).subscribe(resp => {
       this.tvShowBanner = mapTvShowToItem(resp);
       this.tvShow = resp;
@@ -59,12 +60,14 @@ export class TvShowComponent implements OnInit, OnDestroy {
   }
 
   getTvShowCredits(id: string) {
+    this.tvShowCredits = null;
     this.tvServ.getTvShowCredits(id).subscribe(resp => {
       this.tvShowCredits = resp;
     });
   }
 
   getSimilarTvShows(id: string) {
+    this.similarTvShows = [];
     this.tvServ.getTvShowSimilar(id).subscribe(resp => {
       this.similarTvShows = resp.map(tvShow => mapTvShowToItem(tvShow))
     });
@@ -81,7 +84,17 @@ export class TvShowComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramSub && this.paramSub.unsubscribe();
+    // this.paramSub && this.paramSub.unsubscribe();
+    if (this.paramSub) {
+      this.paramSub.unsubscribe();
+    }
+  }
+
+  get loadContent(): boolean {
+    if (this.similarTvShows && this.tvShowCredits) {
+      return true;
+    }
+    return false;
   }
 
   private onSanitizeUrl(url: string) {
