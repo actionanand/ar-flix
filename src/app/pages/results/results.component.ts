@@ -27,24 +27,28 @@ export class ResultsComponent implements OnInit {
   constructor(private moviesServ: MoviesService, private route: ActivatedRoute, private tvServ: TvShowsService) { }
 
   getPagedMovies(page: number = 1, searchTerm: string = '') {
+    this.items = [];
     this.moviesServ.searchMovies(page, searchTerm).subscribe(resp => {
       this.items = resp.map(movie => mapMovieToItem(movie));
     });
   }
 
   getMoviesByGenre(id: string, page: number = 1) {
+    this.items = [];
     this.moviesServ.getMoviesByGenre(id, page).subscribe(resp => {
       this.items = resp.map(movie => mapMovieToItem(movie));
     });
   }
 
   getPagedTvShows(page: number = 1, searchTerm: string = '') {
+    this.items = [];
     this.tvServ.searchTvShows(page, searchTerm).subscribe(resp => {
       this.items = resp.map(tv => mapTvShowToItem(tv));
     });
   }
 
   getTvByGenre(id: string, page: number = 1) {
+    this.items = [];
     this.tvServ.getTvShowsByGenre(id, page).subscribe(resp => {
       this.items = resp.map(tv => mapTvShowToItem(tv));
     });

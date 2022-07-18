@@ -1,5 +1,18 @@
-<app-slider [items]="popularMovies"></app-slider>
+<ng-container *ngIf="loadContent else loadSkeleton">
+  <app-slider [items]="popularMovies"></app-slider>
 
-<app-items-banner [items]="upcomingMovies" title="Now Playing Movies"></app-items-banner>
-<app-items-banner [items]="topRatedMovies" title="Top Rated Movies"></app-items-banner>
-<app-items-banner [items]="onTheAirTv" title="On The Air Tv Shows"></app-items-banner>
+  <app-items-banner [items]="upcomingMovies" title="Now Playing Movies"></app-items-banner>
+  <app-items-banner [items]="topRatedMovies" title="Top Rated Movies"></app-items-banner>
+  <app-items-banner [items]="onTheAirTv" title="On The Air Tv Shows"></app-items-banner>
+</ng-container>
+
+<ng-template #loadSkeleton>
+  <div class="container">
+    <p-skeleton width="100%" height="250px"></p-skeleton>
+    <div class="grid container" *ngFor="let item of [1, 2]">
+      <div class="col-6 md:col-2 lg:col-2" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+        <p-skeleton width="100%" height="300px" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+  </div>
+</ng-template>

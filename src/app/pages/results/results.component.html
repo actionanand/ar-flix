@@ -1,29 +1,41 @@
-<div class="container">
-  <div class="grid">
-    <div class="col-12">
-      <div class="p-fluid">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input type="text" pInputText [placeholder]="'Search for ' + tvOrMovie" [(ngModel)]="searchTerm" (change)="onSearchChange()" />
-        </span>
+<ng-container *ngIf="items.length else loadSkeleton">
+  <div class="container">
+    <div class="grid">
+      <div class="col-12">
+        <div class="p-fluid">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [placeholder]="'Search for ' + tvOrMovie" [(ngModel)]="searchTerm" (change)="onSearchChange()" />
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid">
+      <div class="col-12">
+        <h2>
+          {{ title }}
+        </h2>
+      </div>
+    </div>
+  
+    <div class="grid">
+      <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of items">
+        <app-item [itemData]="item"></app-item>
+      </div>
+    </div>
+    <div>
+      <p-paginator [rows]="20" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loadSkeleton>
+  <div class="container">
+    <div class="grid" *ngFor="let item of [1, 2]">
+      <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of [1, 2, 3, 4]">
+        <p-skeleton width="100%" height="420px" borderRadius="16px"></p-skeleton>
       </div>
     </div>
   </div>
-  
-  <div class="grid">
-    <div class="col-12">
-      <h2>
-        {{ title }}
-      </h2>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of items">
-      <app-item [itemData]="item"></app-item>
-    </div>
-  </div>
-  <div>
-    <p-paginator [rows]="20" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
-  </div>
-</div>
+</ng-template>

@@ -26,4 +26,11 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
+  get loadContent(): boolean {
+    if (this.genres.length && this.genresTv.length) {
+      return true;
+    }
+    return false;
+  }
+
 }

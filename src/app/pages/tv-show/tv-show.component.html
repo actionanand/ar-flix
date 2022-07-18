@@ -1,4 +1,4 @@
-<ng-container *ngIf="tvShow">
+<ng-container *ngIf="tvShow && loadContent; else loadSkeleton">
   <app-slider *ngIf="tvShowBanner" [items]="[tvShowBanner]" [isBanner]="true"></app-slider>
 
   <div class="container">
@@ -145,3 +145,22 @@
 
   <app-items-banner [items]="similarTvShows" title="Similar Tv Shows"></app-items-banner>
 </ng-container>
+
+<ng-template #loadSkeleton>
+  <div class="container">
+    <p-skeleton width="100%" height="250px"></p-skeleton>
+    <div class="grid container">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+    <div class="grid container" *ngFor="let item of [1, 2]">
+      <div class="col-6 md:col-2 lg:col-2" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+  </div>
+</ng-template>
