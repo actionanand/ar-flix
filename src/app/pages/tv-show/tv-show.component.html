@@ -18,13 +18,13 @@
                 {{ tvShow?.first_air_date | date: 'dd-MMM-yyyy' }}
               </div>
             </div>
-            <div class="stat" *ngIf="tvShow?.first_air_date">
+            <div class="stat" *ngIf="tvShow?.last_air_date">
               <div class="label">Last Aired:</div>
               <div class="value">
                 {{ tvShow?.last_air_date | date: 'dd-MMM-yyyy' }}
               </div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.original_language">
               <div class="label">Language:</div>
               <div class="value">
                 {{ tvShow.original_language | uppercase }}
@@ -38,23 +38,23 @@
                 </span>
               </div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.episode_run_time">
               <div class="label">Duration:</div>
               <div class="value">{{ tvShow.episode_run_time }} min</div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.status">
               <div class="label">Status:</div>
               <div class="value">
                 {{ tvShow.status }}
               </div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.number_of_seasons">
               <div class="label">Total Seasons:</div>
               <div class="value">
                 {{ tvShow?.number_of_seasons }}
               </div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.genres?.length">
               <div class="label">Genré:</div>
               <div class="value">
                 <span *ngFor="let genre of tvShow?.genres">
@@ -62,7 +62,7 @@
                 </span>
               </div>
             </div>
-            <div class="stat">
+            <div class="stat" *ngIf="tvShow?.created_by?.length">
               <div class="label">Creator:</div>
               <div class="value">
                 <span *ngFor="let creator of tvShow?.created_by">

@@ -21,6 +21,9 @@ export class ResultsComponent implements OnInit {
   tvOrMovie: string = 'movie';
   title: string = '';
 
+  // this api will support max of 500 pages. so 500 x 20 = 10,000
+  totalRecords: number = 10000;
+
   constructor(private moviesServ: MoviesService, private route: ActivatedRoute, private tvServ: TvShowsService) { }
 
   getPagedMovies(page: number = 1, searchTerm: string = '') {
