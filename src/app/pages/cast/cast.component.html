@@ -1,4 +1,4 @@
-<ng-container *ngIf="person">
+<ng-container *ngIf="person else loadSkeleton">
   <div class="container">
     <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
@@ -64,8 +64,28 @@
             <a [href]="idmbUrl" target="_blank" class="movie-link"> {{ person?.name }} </a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+  <ng-template [ngIf]="personCredits?.length">
+    <app-items-banner [items]="personCredits" title="Movies from this artiste"></app-items-banner>
+  </ng-template>
 </ng-container>
+
+<ng-template #loadSkeleton>
+  <div class="container">
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+    <div class="grid container" *ngFor="let item of [1, 2]">
+      <div class="col-6 md:col-2 lg:col-2" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+        <p-skeleton width="100%" height="150px" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -6,8 +6,9 @@ import { first } from 'rxjs';
 
 import { IMAGES_SIZES } from '../../shared/constants/images-sizes';
 import { environment as env } from 'src/environments/environment';
-import { CastAndCrew, Person } from '../../models/person';
+import { ExternalId, mapMovieAndTvCreditsToItem, Person } from '../../models/person';
 import { CastService } from '../../services/cast.service';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-cast',
@@ -21,7 +22,8 @@ export class CastComponent implements OnInit {
   idmbUrl: SafeUrl = this.onSanitizeUrl(env.idmbUserUrl);
 
   person: Person | null = null;
-  personCredits: CastAndCrew[] = [];
+  personCredits: Item[] = [];
+  // socialIds: ExternalId | null = null;
 
   constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private personServ: CastService) { }
 
@@ -35,14 +37,22 @@ export class CastComponent implements OnInit {
 
   getPersonMovieCredit(id: string) {
     this.personServ.getPersonMovieCredit(id).subscribe(resp => {
-      this.personCredits = resp;
+      this.personCredits = resp.map(movie => mapMovieAndTvCreditsToItem(movie));
     });
   }
+
+  // getSocialMediaId(id: string) {
+  //   this.personServ.getPersonExternalData(id).subscribe(resp => {
+  //     this.socialIds = resp;
+  //     console.log(this.socialIds);
+  //   });
+  // }
 
   ngOnInit(): void {
     this.route.params.pipe(first()).subscribe(({personId}) => {
       this.getPersonDetail(personId);
       this.getPersonMovieCredit(personId);
+      // this.getSocialMediaId(personId);
     });
   }
 
