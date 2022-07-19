@@ -1,0 +1,56 @@
+@import '../../../styles/colors';
+
+.poster {
+  max-width: 100%;
+}
+
+.overview {
+  line-height: 1.5;
+}
+
+.stat {
+  display: flex;
+  margin-bottom: 15px;
+  .label {
+    width: 150px;
+    font-weight: bold;
+  }
+
+  .value {
+    color: $primaryColor;
+  }
+
+  // .elipsis {
+  //   cursor: pointer;
+  //   vertical-align: middle;
+
+  //   &:hover {
+  //     color: white;
+  //     .pi {
+  //       font-size: 1.5rem;
+  //     }
+  //   }
+  // }
+
+  .movie-link {
+    color: $primaryColor;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.actor {
+  padding: 10px;
+  max-width: 280px;
+  max-height: 450px;
+  img {
+    width: 100%;
+  }
+  span {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+  }
+}

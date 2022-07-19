@@ -4,5 +4,6 @@ export const environment = {
   baseUrl: 'https://api.themoviedb.org/3',
   imgBaseUrl: 'https://image.tmdb.org/t/p',
   manPlaceholderImg: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Placeholder_Person.jpg',
-  idmbUrl: 'https://www.imdb.com/title'
+  idmbUrl: 'https://www.imdb.com/title',
+  idmbUserUrl: 'https://www.imdb.com/name'
 };

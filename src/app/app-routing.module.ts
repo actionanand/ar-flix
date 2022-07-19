@@ -7,6 +7,7 @@ import { ResultsComponent } from './pages/results/results.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { TvShowComponent } from './pages/tv-show/tv-show.component';
+import { CastComponent } from './pages/cast/cast.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
     path: 'categories',
     component: CategoriesComponent,
     title: 'Movies & Tv shows Categories'
+  },
+  {
+    path: 'cast/:personId',
+    component: CastComponent,
+    title: 'About Cast'
   },
   {
     path: '**',

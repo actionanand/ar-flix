@@ -127,7 +127,7 @@
         <h2>Cast</h2>
       </ng-template>
       <ng-template let-actor pTemplate="item">
-        <div class="actor">
+        <a class="actor" [routerLink]="['/cast/', actor.id]" >
           <ng-container *ngIf="actor.profile_path else placeHolderImg">
             <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
             <span>{{ actor.name }}</span>
@@ -136,7 +136,7 @@
             <img [src]="manPlaceholderImg" [alt]="actor.name" />
             <span>{{ actor.name }}</span>
           </ng-template>
-        </div>
+        </a>
       </ng-template>
     </p-carousel>
   </div>
