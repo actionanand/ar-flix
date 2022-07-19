@@ -26,6 +26,7 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { TvShowComponent } from './pages/tv-show/tv-show.component';
+import { CastComponent } from './pages/cast/cast.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { TvShowComponent } from './pages/tv-show/tv-show.component';
     MovieComponent,
     VideoEmbedComponent,
     CategoriesComponent,
-    TvShowComponent
+    TvShowComponent,
+    CastComponent
   ],
   imports: [
     BrowserModule,

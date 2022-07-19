@@ -1,0 +1,71 @@
+<ng-container *ngIf="person">
+  <div class="container">
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <ng-container *ngIf="person?.profile_path; else placeHolderImg">
+          <img class="poster" [src]="imagesSizes.medium + person?.profile_path" [alt]="person?.name" />
+        </ng-container>
+        <ng-template #placeHolderImg>
+          <img class="poster" [src]="manPlaceholderImg" [alt]="person?.name" />
+        </ng-template>
+      </div>
+
+      <div class="col-12 md:col-9 lg:col-9">
+        <h2>{{ person?.name }}</h2>
+        <p class="overview"> {{ person?.biography }} </p>
+
+        <div class="stat" *ngIf="person?.known_for_department">
+          <div class="label">Known for:</div>
+          <div class="value">
+            {{ person?.known_for_department }}
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.birthday">
+          <div class="label">Date of Birth:</div>
+          <div class="value">
+            {{ person?.birthday | date: 'dd-MMM-yyyy' }}
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.deathday">
+          <div class="label">Passed away on:</div>
+          <div class="value">
+            {{ person?.deathday | date: 'dd-MMM-yyyy' }}
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.place_of_birth">
+          <div class="label">Place of Birth:</div>
+          <div class="value">
+            {{ person?.place_of_birth }}
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.gender">
+          <div class="label">Sex:</div>
+          <div class="value">
+            {{ getGender }}
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.also_known_as?.length">
+          <div class="label">Also Known as:</div>
+          <div class="value">
+            <span *ngFor="let item of person?.also_known_as | slice:0:3">
+              {{ item }}
+            </span>
+          </div>
+        </div>
+
+        <div class="stat" *ngIf="person?.imdb_id">
+          <div class="label">IDMB Reference:</div>
+          <div class="value">
+            <a [href]="idmbUrl" target="_blank" class="movie-link"> {{ person?.name }} </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-container>

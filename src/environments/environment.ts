@@ -8,7 +8,8 @@ export const environment = {
   baseUrl: 'https://api.themoviedb.org/3',
   imgBaseUrl: 'https://image.tmdb.org/t/p',
   manPlaceholderImg: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Man_Silhouette2.jpg',
-  idmbUrl: 'https://www.imdb.com/title'
+  idmbUrl: 'https://www.imdb.com/title',
+  idmbUserUrl: 'https://www.imdb.com/name'
 };
 
 /*
