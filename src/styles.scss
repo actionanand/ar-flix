@@ -49,3 +49,12 @@ a {
   margin: 0.5rem;
   padding: 0.5rem;
 }
+
+// adding commas
+.comma_ {
+  margin-right: 9px;
+
+  &:not(:last-child):after {
+    content: ',';
+  }
+}

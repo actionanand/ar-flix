@@ -20,6 +20,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
 
   readonly imagesSizes = IMAGES_SIZES;
   readonly manPlaceholderImg: SafeUrl = this.onSanitizeUrl(env.manPlaceholderImg);
+  readonly posterImgNotFound: SafeUrl = this.onSanitizeUrl(env.movieNotFoundUrl);
 
   paramSub!: Subscription;
 
@@ -41,6 +42,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
     this.tvServ.getTvShow(id).subscribe(resp => {
       this.tvShowBanner = mapTvShowToItem(resp);
       this.tvShow = resp;
+      // console.log(JSON.stringify(this.tvShow));
       if(this.tvShow.networks.length > 3) {
         this.showNetwork = true;
       }

@@ -57,7 +57,7 @@ const routes: Routes = [
   {
     path: 'cast/:personId',
     component: CastComponent,
-    title: 'About Cast'
+    title: 'About artiste'
   },
   {
     path: '**',

@@ -24,11 +24,18 @@
         <app-item [itemData]="item"></app-item>
       </div>
     </div>
-    <div>
-      <p-paginator [rows]="20" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
-    </div>
   </div>
 </ng-container>
+
+<div class="container">
+  <div class="grid">
+    <div class="col-12">
+      <p-paginator [rows]="20" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" ></p-paginator>
+    </div>
+  </div>
+</div>
+
+
 
 <ng-template #loadSkeleton>
   <div class="container">

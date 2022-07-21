@@ -6,7 +6,12 @@
       <p-tabPanel header="Overview">
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
-            <img class="poster" [src]="imagesSizes.medium + tvShow.poster_path" [alt]="tvShow.name" />
+            <ng-container *ngIf="tvShow.poster_path; else loadNotFoundImg">
+              <img class="poster" [src]="imagesSizes.medium + tvShow.poster_path" [alt]="tvShow.name" />
+            </ng-container>
+            <ng-template #loadNotFoundImg>
+              <img [src]="posterImgNotFound" [alt]="tvShow.name" />
+            </ng-template>
           </div>
   
           <div class="col-12 md:col-9 lg:col-9">
@@ -33,14 +38,14 @@
             <div class="stat" *ngIf="tvShow?.spoken_languages?.length">
               <div class="label">Audio Feed(s):</div>
               <div class="value">
-                <span *ngFor="let lang of tvShow?.spoken_languages">
+                <span *ngFor="let lang of tvShow?.spoken_languages" class="comma_">
                   {{ lang.name }} ({{ lang?.iso_639_1 | uppercase }})
                 </span>
               </div>
             </div>
-            <div class="stat" *ngIf="tvShow?.episode_run_time">
+            <div class="stat" *ngIf="tvShow?.episode_run_time?.length">
               <div class="label">Duration:</div>
-              <div class="value">{{ tvShow.episode_run_time }} min</div>
+              <div class="value">{{ tvShow.episode_run_time | min2hr }}</div>
             </div>
             <div class="stat" *ngIf="tvShow?.status">
               <div class="label">Status:</div>
@@ -57,7 +62,7 @@
             <div class="stat" *ngIf="tvShow?.genres?.length">
               <div class="label">Genré:</div>
               <div class="value">
-                <span *ngFor="let genre of tvShow?.genres">
+                <span *ngFor="let genre of tvShow?.genres" class="comma_">
                   {{ genre.name }}
                 </span>
               </div>
@@ -65,7 +70,7 @@
             <div class="stat" *ngIf="tvShow?.created_by?.length">
               <div class="label">Creator:</div>
               <div class="value">
-                <span *ngFor="let creator of tvShow?.created_by">
+                <span *ngFor="let creator of tvShow?.created_by" class="comma_">
                   {{ creator.name }}
                 </span>
               </div>
@@ -82,7 +87,7 @@
             <div class="stat" *ngIf="tvShow?.networks?.length">
               <div class="label">Network:</div>
               <div class="value">
-                <span *ngFor="let network of tvShow?.networks | slice:0:3">
+                <span *ngFor="let network of tvShow?.networks | slice:0:3" class="comma_">
                   {{ network.name }}
                 </span>
                 <span pButton label="Basic" (click)="showNetwrkCompany.toggle($event)" *ngIf="showNetwork" class="elipsis">
@@ -97,39 +102,53 @@
   
       <p-tabPanel header="Videos">
         <div class="grid">
-          <ng-container *ngFor="let tvShowVideo of tvShowVideos">
-            <div class="col-12 md:col-4 lg:col-4">
-              <app-video-embed [key]="tvShowVideo.key" [site]="tvShowVideo.site"></app-video-embed>
-            </div>
+          <ng-container *ngIf="tvShowVideos?.length else noVidFound">
+            <ng-container *ngFor="let tvShowVideo of tvShowVideos">
+              <div class="col-12 md:col-4 lg:col-4">
+                <app-video-embed [key]="tvShowVideo.key" [site]="tvShowVideo.site"></app-video-embed>
+              </div>
+            </ng-container>
           </ng-container>
+          <ng-template #noVidFound>
+            <div class="not-found-content">
+              No Videos Found!
+            </div>
+          </ng-template>
         </div>
       </p-tabPanel>
   
       <p-tabPanel header="Photos">
         <div class="grid">
-          <ng-container *ngFor="let tvShowImage of tvShowImages?.backdrops">
-            <div class="col-12 md:col-4 lg:col-4">
-              <p-image
-                [src]="imagesSizes.large + tvShowImage.file_path"
-                alt="Image"
-                width="100%"
-                [preview]="true"
-              ></p-image>
-            </div>
+          <ng-container *ngIf="tvShowImages?.backdrops?.length; else noImgFound">
+            <ng-container *ngFor="let tvShowImage of tvShowImages?.backdrops">
+              <div class="col-12 md:col-4 lg:col-4">
+                <p-image
+                  [src]="imagesSizes.large + tvShowImage.file_path"
+                  alt="Image"
+                  width="100%"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </ng-container>
           </ng-container>
+          <ng-template #noImgFound>
+            <div class="not-found-content">
+              No Images Found!
+            </div>
+          </ng-template>
         </div>
       </p-tabPanel>
     </p-tabView>
   </div>
 
-  <div class="container">
+  <div class="container" *ngIf="tvShowCredits?.cast?.length">
     <p-carousel [numVisible]="5" *ngIf="tvShowCredits" [value]="tvShowCredits.cast" [numScroll]="3" 
       [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
       <ng-template pTemplate="header">
         <h2>Cast</h2>
       </ng-template>
       <ng-template let-actor pTemplate="item">
-        <div class="actor">
+        <a class="actor" [routerLink]="['/cast/', actor.id]">
           <ng-container *ngIf="actor.profile_path else placeHolderImg">
             <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
             <span>{{ actor.name }}</span>
@@ -138,12 +157,14 @@
             <img [src]="manPlaceholderImg" [alt]="actor.name" />
             <span>{{ actor.name }}</span>
           </ng-template>
-        </div>
+        </a>
       </ng-template>
     </p-carousel>
   </div>
 
-  <app-items-banner [items]="similarTvShows" title="Similar Tv Shows"></app-items-banner>
+  <ng-template [ngIf]="similarTvShows?.length">
+    <app-items-banner [items]="similarTvShows" title="Similar Tv Shows"></app-items-banner>
+  </ng-template>
 </ng-container>
 
 <ng-template #loadSkeleton>
