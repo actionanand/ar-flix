@@ -6,7 +6,12 @@
       <p-tabPanel header="Overview">
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
-            <img class="poster" [src]="imagesSizes.medium + movie.poster_path" [alt]="movie.title" />
+            <ng-container *ngIf="movie.poster_path else loadNotFoundImg">
+              <img class="poster" [src]="imagesSizes.medium + movie.poster_path" [alt]="movie.title" />
+            </ng-container>
+            <ng-template #loadNotFoundImg>
+              <img [src]="posterImgNotFound" [alt]="movie.title" />
+            </ng-template>
           </div>
   
           <div class="col-12 md:col-9 lg:col-9">
@@ -49,8 +54,7 @@
             <div class="stat" *ngIf="movie?.genres?.length">
               <div class="label">Genré:</div>
               <div class="value">
-                <span *ngFor="let genre of movie?.genres; index as i">
-                  <ng-container *ngIf="i !== 0">, </ng-container>
+                <span *ngFor="let genre of movie?.genres" class="comma_">
                   {{ genre.name }}
                 </span>
               </div>
@@ -58,7 +62,7 @@
             <div class="stat" *ngIf="movie?.spoken_languages?.length">
               <div class="label">Audio Feed(s):</div>
               <div class="value">
-                <span *ngFor="let lang of movie?.spoken_languages">
+                <span *ngFor="let lang of movie?.spoken_languages" class="comma_">
                   {{ lang.name }} ({{ lang?.iso_639_1 | uppercase }})
                 </span>
               </div>
@@ -75,7 +79,7 @@
             <div class="stat" *ngIf="movie?.production_companies?.length">
               <div class="label">Production:</div>
               <div class="value">
-                <span *ngFor="let company of movie?.production_companies | slice:0:3">
+                <span *ngFor="let company of movie?.production_companies | slice:0:3" class="comma_">
                   {{ company.name }}
                 </span>
                 <span pButton label="Basic" (click)="showProdCompany.toggle($event)" *ngIf="showCompany" class="elipsis">
@@ -96,31 +100,45 @@
   
       <p-tabPanel header="Videos">
         <div class="grid">
-          <ng-container *ngFor="let vid of movieVideos">
-            <div class="col-12 md:col-4 lg:col-4">
-              <app-video-embed [key]="vid.key" [site]="vid.site"></app-video-embed>
-            </div>
+          <ng-container *ngIf="movieVideos?.length else noVidFound">
+            <ng-container *ngFor="let vid of movieVideos">
+              <div class="col-12 md:col-4 lg:col-4">
+                <app-video-embed [key]="vid.key" [site]="vid.site"></app-video-embed>
+              </div>
+            </ng-container>
           </ng-container>
+          <ng-template #noVidFound>
+            <div class="not-found-content">
+              No Videos Found!
+            </div>
+          </ng-template>
         </div>
       </p-tabPanel>
       <p-tabPanel header="Photos">
         <div class="grid">
-          <ng-container *ngFor="let img of movieImages?.backdrops">
-            <div class="col-12 md:col-4 lg:col-4">
-              <p-image
-                [src]="imagesSizes.large + img.file_path"
-                alt="Image"
-                width="100%"
-                [preview]="true"
-              ></p-image>
-            </div>
+          <ng-container *ngIf="movieImages?.backdrops?.length; else noImgFound">
+            <ng-container *ngFor="let img of movieImages?.backdrops">
+              <div class="col-12 md:col-4 lg:col-4">
+                <p-image
+                  [src]="imagesSizes.large + img.file_path"
+                  alt="Image"
+                  width="100%"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </ng-container>
           </ng-container>
+          <ng-template #noImgFound>
+            <div class="not-found-content">
+              No Images Found!
+            </div>
+          </ng-template>
         </div>
       </p-tabPanel>
     </p-tabView>
   </div>
 
-  <div class="container">
+  <div class="container" *ngIf="movieCredits?.cast?.length">
     <p-carousel [numVisible]="5" *ngIf="movieCredits" [value]="movieCredits.cast" [numScroll]="3" 
       [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
       <ng-template pTemplate="header">
@@ -141,7 +159,9 @@
     </p-carousel>
   </div>
 
-  <app-items-banner [items]="similarMovies" title="Similar Movies"></app-items-banner>
+  <ng-template [ngIf]="similarMovies.length">
+    <app-items-banner [items]="similarMovies" title="Similar Movies"></app-items-banner>
+  </ng-template>
 </ng-container>
 
 <ng-template #loadSkeleton>

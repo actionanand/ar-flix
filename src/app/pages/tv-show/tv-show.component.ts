@@ -20,6 +20,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
 
   readonly imagesSizes = IMAGES_SIZES;
   readonly manPlaceholderImg: SafeUrl = this.onSanitizeUrl(env.manPlaceholderImg);
+  readonly posterImgNotFound: SafeUrl = this.onSanitizeUrl(env.movieNotFoundUrl);
 
   paramSub!: Subscription;
 

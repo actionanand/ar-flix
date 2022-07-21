@@ -20,6 +20,8 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   readonly imagesSizes = IMAGES_SIZES;
   readonly manPlaceholderImg: SafeUrl = this.onSanitizeUrl(env.manPlaceholderImg);
+  readonly posterImgNotFound: SafeUrl = this.onSanitizeUrl(env.movieNotFoundUrl);
+
   idmbUrl: SafeUrl = this.onSanitizeUrl(env.idmbUrl);
 
   responsiveOptions = CAROUSEL_RESPONSIVE_CONST;

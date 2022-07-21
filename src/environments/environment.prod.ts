@@ -5,5 +5,6 @@ export const environment = {
   imgBaseUrl: 'https://image.tmdb.org/t/p',
   manPlaceholderImg: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Placeholder_Person.jpg',
   idmbUrl: 'https://www.imdb.com/title',
-  idmbUserUrl: 'https://www.imdb.com/name'
+  idmbUserUrl: 'https://www.imdb.com/name',
+  movieNotFoundUrl: 'https://cdn.pixabay.com/photo/2017/01/25/17/35/camera-2008489_1280.png'
 };

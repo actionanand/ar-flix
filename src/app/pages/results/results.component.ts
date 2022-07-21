@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { first, take } from 'rxjs';
 
 import { TvShowsService } from '../../services/tv-shows.service';
@@ -126,8 +126,9 @@ export class ResultsComponent implements OnInit {
   }
 
   paginate(event: any) {
-    const pageNumber = event.page + 1;
-    if (this.tvOrMovie === 'movie') {
+    const pageNumber = +event.page + 1;
+    console.log(event);
+    if (this.tvOrMovie.toString() === 'movie') {
       this.paginateMovies(pageNumber);
     } else {
       this.paginateTvShows(pageNumber);
