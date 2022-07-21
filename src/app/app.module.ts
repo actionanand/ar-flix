@@ -27,6 +27,7 @@ import { VideoEmbedComponent } from './components/video-embed/video-embed.compon
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { TvShowComponent } from './pages/tv-show/tv-show.component';
 import { CastComponent } from './pages/cast/cast.component';
+import { Min2hrPipe } from './shared/pipes/min2hr.pipe';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CastComponent } from './pages/cast/cast.component';
     VideoEmbedComponent,
     CategoriesComponent,
     TvShowComponent,
-    CastComponent
+    CastComponent,
+    Min2hrPipe
   ],
   imports: [
     BrowserModule,

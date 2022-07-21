@@ -38,7 +38,7 @@
             </div>
             <div class="stat" *ngIf="movie?.runtime">
               <div class="label">Duration:</div>
-              <div class="value">{{ movie.runtime }} min</div>
+              <div class="value">{{ movie.runtime | min2hr }}</div>
             </div>
             <div class="stat" *ngIf="movie?.status">
               <div class="label">Status:</div>

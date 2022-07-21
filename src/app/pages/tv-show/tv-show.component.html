@@ -40,7 +40,7 @@
             </div>
             <div class="stat" *ngIf="tvShow?.episode_run_time">
               <div class="label">Duration:</div>
-              <div class="value">{{ tvShow.episode_run_time }} min</div>
+              <div class="value">{{ tvShow.episode_run_time | min2hr }}</div>
             </div>
             <div class="stat" *ngIf="tvShow?.status">
               <div class="label">Status:</div>
