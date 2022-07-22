@@ -127,7 +127,7 @@ export class ResultsComponent implements OnInit {
 
   paginate(event: any) {
     const pageNumber = +event.page + 1;
-    console.log(event);
+    // console.log(event);
     if (this.tvOrMovie.toString() === 'movie') {
       this.paginateMovies(pageNumber);
     } else {
