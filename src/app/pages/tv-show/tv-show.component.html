@@ -10,7 +10,7 @@
               <img class="poster" [src]="imagesSizes.medium + tvShow.poster_path" [alt]="tvShow.name" />
             </ng-container>
             <ng-template #loadNotFoundImg>
-              <img [src]="posterImgNotFound" [alt]="tvShow.name" />
+              <img [src]="posterImgNotFound" class="poster" [alt]="tvShow.name" />
             </ng-template>
           </div>
   
@@ -32,14 +32,14 @@
             <div class="stat" *ngIf="tvShow?.original_language">
               <div class="label">Language:</div>
               <div class="value">
-                {{ tvShow.original_language | uppercase }}
+                {{ tvShow.original_language | fulllanguage }} ({{ tvShow.original_language | uppercase }})
               </div>
             </div>
             <div class="stat" *ngIf="tvShow?.spoken_languages?.length">
               <div class="label">Audio Feed(s):</div>
               <div class="value">
                 <span *ngFor="let lang of tvShow?.spoken_languages" class="comma_">
-                  {{ lang.name }} ({{ lang?.iso_639_1 | uppercase }})
+                  {{ lang?.name }} ({{ lang?.english_name }})
                 </span>
               </div>
             </div>

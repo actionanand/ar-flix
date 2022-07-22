@@ -10,7 +10,7 @@
               <img class="poster" [src]="imagesSizes.medium + movie.poster_path" [alt]="movie.title" />
             </ng-container>
             <ng-template #loadNotFoundImg>
-              <img [src]="posterImgNotFound" [alt]="movie.title" />
+              <img [src]="posterImgNotFound" class="poster" [alt]="movie.title" />
             </ng-template>
           </div>
   
@@ -26,7 +26,7 @@
             <div class="stat" *ngIf="movie?.original_language">
               <div class="label">Language:</div>
               <div class="value">
-                {{ movie.original_language | uppercase }}
+                {{ movie.original_language | fulllanguage }} ({{ movie.original_language | uppercase }})
               </div>
             </div>
             <div class="stat" *ngIf="movie?.revenue">
@@ -63,7 +63,7 @@
               <div class="label">Audio Feed(s):</div>
               <div class="value">
                 <span *ngFor="let lang of movie?.spoken_languages" class="comma_">
-                  {{ lang.name }} ({{ lang?.iso_639_1 | uppercase }})
+                  {{ lang.name }} ({{ lang?.english_name }})
                 </span>
               </div>
             </div>
