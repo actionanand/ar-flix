@@ -5,7 +5,7 @@
         <img class="slide-bg-image" [src]="imagesSizes.large + item.backdrop_path" [alt]="item.title" />
       </div>
       <div class="slide-pane">
-        <h2 class="name">{{ item.title }}</h2>
+        <h2 class="name" [routerLink]="item.routePath">{{ item.title }}</h2>
         <div class="meta">
           <div class="info">
             <span class="rating"> 
@@ -17,7 +17,7 @@
             <span>{{ item.release_date | date: 'yyyy' }}</span>
           </div>
         </div>
-        <div class="desc mt-6"> {{ item.overview }} </div>
+        <div class="desc mt-6"> {{ item.overview | ellipsis:[500]}} </div>
       </div>
     </div>
   </ng-container>
