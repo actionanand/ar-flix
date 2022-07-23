@@ -30,6 +30,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [CSS Gradient](https://cssgradient.io/)
 - [Angular Pass Data to Route: Dynamic/Static](https://www.tektutorialshub.com/angular/angular-pass-data-to-route/)
 - [How to deploy a React, Angular and Vue project to Github pages](https://deepinder.me/how-to-deploy-a-react-angular-vue-project-to-github-pages)
+- [How to retry an HTTP request in Angular (with plenty of code examples)](https://danielk.tech/home/angular-retry-an-http-request)
 
 ### Untracking `environment` files
 

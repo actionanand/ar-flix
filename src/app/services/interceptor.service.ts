@@ -1,6 +1,6 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpParams, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class InterceptorService implements HttpInterceptor {
 
+  retryCount = 3;
+
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
@@ -16,6 +18,8 @@ export class InterceptorService implements HttpInterceptor {
       setHeaders: { Authorization: `Bearer ${environment.dbToken}` }
     });
 
-    return next.handle(modReq);
+    return next.handle(modReq).pipe(
+      retry(this.retryCount)
+    );
   }
 }

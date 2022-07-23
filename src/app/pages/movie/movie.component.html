@@ -89,8 +89,9 @@
             </div>
 
             <div class="stat" *ngIf="movie?.imdb_id">
+              <div class="label">IDMB Reference:</div>
               <div class="value">
-                <a [href]="idmbUrl" target="_blank" class="movie-link"> - IDMB Reference</a>
+                <a [href]="idmbUrl" target="_blank" class="movie-link"> {{ movie.title }} </a>
               </div>
             </div>
           </div>
