@@ -29,6 +29,7 @@ import { TvShowComponent } from './pages/tv-show/tv-show.component';
 import { CastComponent } from './pages/cast/cast.component';
 import { Min2hrPipe } from './shared/pipes/min2hr.pipe';
 import { FullLanguagePipe } from './shared/pipes/full-language.pipe';
+import { EllipsisPipe } from './shared/pipes/ellipsis.pipe';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { FullLanguagePipe } from './shared/pipes/full-language.pipe';
     TvShowComponent,
     CastComponent,
     Min2hrPipe,
-    FullLanguagePipe
+    FullLanguagePipe,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,

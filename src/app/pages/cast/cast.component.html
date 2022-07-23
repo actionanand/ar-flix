@@ -35,10 +35,10 @@
           </div>
         </div>
 
-        <div class="stat" *ngIf="person?.place_of_birth">
+        <div class="stat">
           <div class="label">Place of Birth:</div>
           <div class="value">
-            {{ person?.place_of_birth }}
+            {{ person?.place_of_birth ?? 'Not known' }}
           </div>
         </div>
 

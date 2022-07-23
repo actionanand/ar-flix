@@ -68,13 +68,14 @@
 
   &:hover {
     color: white;
-    .pi {
-      font-size: 1.5rem;
-    }
+    // .pi {
+    //   font-size: 1.5rem;
+    // }
   }
 }
 
 .actor {
+  display: block;
   padding: 10px;
   max-width: 280px;
   max-height: 450px;

@@ -11,6 +11,7 @@ export class ItemsBannerComponent implements OnInit {
 
   @Input() items: Item[] = [];
   @Input() title: string = '';
+  @Input() imgQaulity: string = 'small';
 
   constructor() { }
 
