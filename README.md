@@ -32,6 +32,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [How to deploy a React, Angular and Vue project to Github pages](https://deepinder.me/how-to-deploy-a-react-angular-vue-project-to-github-pages)
 - [How to retry an HTTP request in Angular (with plenty of code examples)](https://danielk.tech/home/angular-retry-an-http-request)
 - [How to iterate over object properties in JavaScript](https://flaviocopes.com/how-to-iterate-object-properties-javascript/)
+- [Similar tv db app - repo](https://github.com/abidakram01/angular-movie-app)
+- [running app from course](https://ngmovies.bluebits.dev/)
 
 ### Untracking `environment` files
 
