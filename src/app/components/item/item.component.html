@@ -7,7 +7,7 @@
     </div>
     <div class="item-image">
       <ng-container *ngIf="itemData?.poster_path; else loadNotFoundImg">
-        <img [src]="imagesSizes.medium + itemData.poster_path" [alt]="itemData.title" />
+        <img [src]="imgSize + itemData.poster_path" [alt]="itemData.title" />
       </ng-container>
       <ng-template #loadNotFoundImg>
         <img [src]="posterImgNotFound" [alt]="itemData.title">

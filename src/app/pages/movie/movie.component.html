@@ -148,7 +148,7 @@
       <ng-template let-actor pTemplate="item">
         <a class="actor" [routerLink]="['/cast/', actor.id]" >
           <ng-container *ngIf="actor.profile_path else placeHolderImg">
-            <img [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name" />
+            <img [src]="imagesSizes.small + actor.profile_path" [alt]="actor.name" />
             <span>{{ actor.name }}</span>
           </ng-container>
           <ng-template #placeHolderImg>
