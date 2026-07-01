@@ -34,7 +34,7 @@ jobs:
         run: echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
 
       - name: Build Angular app for GitHub Pages
-        run: npm run build:gh --configuration=production
+        run: npm run build:github
 
       - name: Copy error files to redirect to home
         run: npm run copy404

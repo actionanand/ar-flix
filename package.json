@@ -10,7 +10,6 @@
     "test": "ng test",
     "build:github": "ng build --output-path dist --base-href /ar-flix/",
     "copy404": "cat './dist/index.html' >> './dist/404.html'",
-    "copy-error-page": "cp dist/index.html dist/404.html",
     "predeploy": "npm run build:github && npm run copy404",
     "deploy": "gh-pages -d dist"
   },
