@@ -34,10 +34,10 @@ jobs:
         run: echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
 
       - name: Build Angular app for GitHub Pages
-        run: npm run build:github
+        run: npm run build:gh
 
       - name: Copy error files to redirect to home
-        run: npm run copy404
+        run: npm run copy-error-page
 
       - name: Deploy
         if: success()
@@ -46,5 +46,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           base_href: /${{ steps.package.outputs.name }}/ # make sure this corresponds to https://<your_username>.github.io/<base_href>/
           deploy_branch: gh-pages
-          publish_dir: dist/${{ steps.package.outputs.name }}/browser
+          publish_dir: dist/${{ steps.package.outputs.name }}
           enable_jekyll: true
