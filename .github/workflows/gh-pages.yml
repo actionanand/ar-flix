@@ -25,9 +25,9 @@ jobs:
 
       - name: Inject secrets into environment.prod.ts
         env:
-          PASSWORD_HASH: ${{ secrets.PASSWORD_HASH }}
+          TMDB_API_READ_TOKEN: ${{ secrets.TMDB_API_READ_TOKEN }}
         run: |
-          sed -i "s|PASSWORD_HASH_PLACEHOLDER|${{ env.PASSWORD_HASH }}|g" src/environments/environment.prod.ts
+          sed -i "s|TMDB_API_READ_TOKEN_PLACEHOLDER|${{ env.TMDB_API_READ_TOKEN }}|g" src/environments/environment.prod.ts
 
       - name: Extract repository name from package.json
         id: package
