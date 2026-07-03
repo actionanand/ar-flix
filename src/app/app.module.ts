@@ -30,6 +30,7 @@ import { CastComponent } from './pages/cast/cast.component';
 import { Min2hrPipe } from './shared/pipes/min2hr.pipe';
 import { FullLanguagePipe } from './shared/pipes/full-language.pipe';
 import { EllipsisPipe } from './shared/pipes/ellipsis.pipe';
+import { InstallBannerComponent } from './components/install-banner/install-banner.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { EllipsisPipe } from './shared/pipes/ellipsis.pipe';
     CastComponent,
     Min2hrPipe,
     FullLanguagePipe,
-    EllipsisPipe
+    EllipsisPipe,
+    InstallBannerComponent
   ],
   imports: [
     BrowserModule,
