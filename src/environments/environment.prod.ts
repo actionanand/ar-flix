@@ -5,6 +5,8 @@ export const environment = {
   imgBaseUrl: 'https://image.tmdb.org/t/p',
   idmbUrl: 'https://www.imdb.com/title',
   idmbUserUrl: 'https://www.imdb.com/name',
+  androidDeepLinkBaseUrl: 'arflix://',
+  newAppUrl: 'https://actionanand.github.io/arflix/',
   manPlaceholderImg: 'assets/images/man-placeholder.jpg',
   movieNotFoundUrl: 'assets/images/movie-not-found.png',
   // manPlaceholderImg: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Placeholder_Person.jpg',
